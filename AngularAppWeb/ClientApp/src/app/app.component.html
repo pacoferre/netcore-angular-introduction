@@ -1,41 +1,18 @@
 <div fxLayout="column" fxFlex>
-
   <mat-toolbar color="primary">
     <mat-toolbar-row>
       <span>Angular Material</span>
     </mat-toolbar-row>
   </mat-toolbar>
-
   <mat-sidenav-container fxFlex>
-    <mat-sidenav mode="side" opened>
-
-      <mat-tab-group>
-        <mat-tab label="Users">
-          <mat-nav-list>
-            <mat-list-item *ngFor="let user of users" (click)="selectedUser = user">
-              <span>{{user.name}}</span>
-            </mat-list-item>
-          </mat-nav-list>
-        </mat-tab>
-        <mat-tab label="Settings">
-          <span>Settings</span>
-        </mat-tab>
-      </mat-tab-group>
-
-    </mat-sidenav>
+    <nav mat-tab-nav-bar>
+      <a mat-tab-link *ngFor="let link of navLinks" [routerLink]="link.path" routerLinkActive #rla="routerLinkActive"
+        [active]="rla.isActive">
+        {{link.label}}
+      </a>
+    </nav>
     <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px">
-
-      <mat-card fxFlex="80">
-        <h2>{{selectedUser.name}}</h2>
-        <p>{{selectedUser.details}}</p>
-      </mat-card>
-
-      <mat-card fxFlex fxLayout="column" fxLayoutGap="14px">
-        <mat-slide-toggle [(ngModel)]="selectedUser.isAdmin">Is Admin?</mat-slide-toggle>
-        <mat-slide-toggle [(ngModel)]="selectedUser.isCool">Is Cool?</mat-slide-toggle>
-      </mat-card>
-
+      <router-outlet></router-outlet>
     </div>
   </mat-sidenav-container>
-
 </div>

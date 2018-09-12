@@ -1,0 +1,6 @@
+<mat-nav-list>
+  <mat-list-item *ngFor="let user of users" (click)="selectedUser = user">
+    <span>{{user.name}}</span>
+  </mat-list-item>
+</mat-nav-list>
+<app-user-edit [selectedUser]="selectedUser"></app-user-edit>
